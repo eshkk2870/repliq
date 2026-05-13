@@ -1,7 +1,4 @@
-import { clerkClient, currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
 import { LayoutDashboard, MessageSquare, BarChart3, Settings, CreditCard } from "lucide-react";
 
 const navItems = [
@@ -13,10 +10,6 @@ const navItems = [
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const user = await currentUser();
-const userId = user?.id;
-if (!userId) redirect("/");
-
   return (
     <div className="min-h-screen bg-gray-50 flex">
       <aside className="w-64 bg-white border-r hidden lg:flex flex-col">
@@ -40,24 +33,10 @@ if (!userId) redirect("/");
           })}
         </nav>
         <div className="p-4 border-t">
-          <div className="flex items-center gap-3">
-            <UserButton afterSignOutUrl="/" />
-            <p className="text-sm font-medium">Hesabım</p>
-          </div>
+          <p className="text-sm text-gray-500">RepliQ Dashboard</p>
         </div>
       </aside>
-      <div className="flex-1 flex flex-col">
-        <header className="lg:hidden bg-white border-b px-4 py-3 flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-repliq-navy flex items-center justify-center">
-              <span className="text-white font-bold text-xs">R</span>
-            </div>
-            <span className="font-heading font-bold text-repliq-navy">RepliQ</span>
-          </Link>
-          <UserButton afterSignOutUrl="/" />
-        </header>
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
-      </div>
+      <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
     </div>
   );
 }
