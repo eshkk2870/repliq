@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { SignInButton, SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 
 export default function LandingPage() {
   return (
@@ -18,16 +17,7 @@ export default function LandingPage() {
               <Link href="#features" className="text-sm text-gray-600 hover:text-repliq-navy hidden sm:block">Özellikler</Link>
               <Link href="#pricing" className="text-sm text-gray-600 hover:text-repliq-navy hidden sm:block">Fiyatlandırma</Link>
               <Link href="#faq" className="text-sm text-gray-600 hover:text-repliq-navy hidden sm:block">SSS</Link>
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <button className="px-4 py-2 text-sm font-medium text-white bg-repliq-green rounded-lg hover:bg-green-700 transition-all">
-                    14 Gün Ücretsiz Başlat
-                  </button>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton afterSignOutUrl="/" />
-              </SignedIn>
+             <a href="https://clerk.com" className="px-4 py-2 ...">Giriş Yap</a>
             </div>
           </div>
         </div>
