@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { clerkClient, currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
@@ -13,8 +13,9 @@ const navItems = [
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { userId } = auth();
-  if (!userId) redirect("/");
+  const user = await currentUser();
+const userId = user?.id;
+if (!userId) redirect("/");
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
